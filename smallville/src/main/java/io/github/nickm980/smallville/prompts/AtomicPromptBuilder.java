@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.github.nickm980.smallville.Smallville;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,7 +81,7 @@ public class AtomicPromptBuilder {
 	String descriptions = characteristics.stream().map(Memory::getDescription).collect(Collectors.joining("; "));
 
 	prompt = prompt
-	    .replace("%time%", LocalDateTime.now().toString())
+	    .replace("%time%", Smallville.getServer().getSimulationService().getTimekeeper().getSimulationTime().toString())
 	    .replace("%name%", person.getFullName())
 	    .replace("%description%", descriptions)
 	    .replace("%location%", person.getLocation().getName());

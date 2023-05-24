@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.github.nickm980.smallville.Smallville;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -245,7 +247,7 @@ public class ChatService implements IChatService {
 
 	String time = input.substring(index, index + 8).trim().replace("(", "");
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
-	return LocalDateTime.of(LocalDate.now(), LocalTime.parse(time, formatter));
+	return LocalDateTime.of(Smallville.getServer().getSimulationService().getTimekeeper().getSimulationTime().toLocalDate(), LocalTime.parse(time, formatter));
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.github.nickm980.smallville.Smallville;
 import io.github.nickm980.smallville.exceptions.SmallvilleException;
 import io.github.nickm980.smallville.models.Agent;
 import io.github.nickm980.smallville.models.Conversation;
@@ -94,7 +95,7 @@ public class PromptBuilder implements IPromptBuilder {
 	prompt = prompt
 	    .replace("[World Description]", atomicBuilder.getWorldDescription(data.getLocations()))
 	    .replace("[Agent Summary Description]", atomicBuilder.getAgentSummaryDescription(agent))
-	    .replace("[Current Time]", atomicBuilder.getTimeAsString(LocalDateTime.now()))
+	    .replace("[Current Time]", atomicBuilder.getTimeAsString(Smallville.getServer().getSimulationService().getTimekeeper().getSimulationTime()))
 	    .replace("[Agent Name]", agent.getFullName())
 	    .replace("[Current Location]", agent.getLocation().getName())
 	    .replace("[Current Location's Objects]", atomicBuilder.getObjects(agent.getLocation().getObjects()))

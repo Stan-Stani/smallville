@@ -34,11 +34,11 @@ public class SimulationService {
 	private Timekeeper timekeeper;
 
     public SimulationService(LLM llm, World world) {
-	this.world = world;
-	this.mapper = new ModelMapper();
-	this.time = new AccessTime();
-	this.prompts = new UpdateService(llm, world);
-	this.timekeeper = new Timekeeper();
+		this.timekeeper = new Timekeeper();
+		this.world = world;
+		this.mapper = new ModelMapper();
+		this.time = new AccessTime(timekeeper);
+		this.prompts = new UpdateService(llm, world);
     }
 
     public void createMemory(CreateMemoryRequest request) {

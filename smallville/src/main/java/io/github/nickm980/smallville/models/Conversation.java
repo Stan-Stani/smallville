@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.nickm980.smallville.Smallville;
 import io.github.nickm980.smallville.exceptions.SmallvilleException;
 
 public class Conversation {
@@ -22,7 +23,7 @@ public class Conversation {
 
 	this.agent = agent;
 	this.other = other;
-	this.createdAt = LocalDateTime.now();
+	this.createdAt = Smallville.getServer().getSimulationService().getTimekeeper().getSimulationTime();
 	this.messages = messages;
     }
 

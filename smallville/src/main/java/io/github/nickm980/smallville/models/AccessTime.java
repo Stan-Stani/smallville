@@ -1,17 +1,22 @@
 package io.github.nickm980.smallville.models;
 
+import java.sql.Time;
 import java.time.LocalDateTime;
 import io.github.nickm980.smallville.Smallville;
 
+
 public class AccessTime {
-    public static final LocalDateTime START = Smallville.getServer().getSimulationService().getTimekeeper().getSimulationTime();
+    private static Timekeeper timekeeper;
+    public static LocalDateTime START = timekeeper.getSimulationTime();
     
     private LocalDateTime lastAccessed;
     private LocalDateTime createdAt;
     
-    public AccessTime() {
-	this.lastAccessed = LocalDateTime.now();
-	this.createdAt = LocalDateTime.now();
+    public AccessTime(Timekeeper timekeeper) {
+        this.timekeeper = timekeeper;
+
+	this.lastAccessed = Smallville.getServer().getSimulationService().getTimekeeper().getSimulationTime();
+	this.createdAt = Smallville.getServer().getSimulationService().getTimekeeper().getSimulationTime();
     }
     
     public LocalDateTime createdAt() {
@@ -19,7 +24,7 @@ public class AccessTime {
     }
     
     public void update() {
-	this.lastAccessed = LocalDateTime.now();
+	    this.lastAccessed = Smallville.getServer().getSimulationService().getTimekeeper().getSimulationTime();
     }
     
     public LocalDateTime getLastAccessed() {
