@@ -22,11 +22,13 @@ public class Timekeeper {
 
     public static LocalDateTime getSimulationTime() {
         if (!isRealTime) {
+            System.out.println("simulationTime: " + simulationTime);
             return simulationTime;
         } else if (isRealTime) {
+            System.out.println("simulationTime: " + LocalDateTime.now());
             return LocalDateTime.now();
         }
-        System.out.println("simulationTime: " + simulationTime);
+
         return null;
     }
 
@@ -40,10 +42,18 @@ public class Timekeeper {
 
     public static void setTimestepDuration(Duration timestepDuration) {
         Timekeeper.timestepDuration = timestepDuration;
+        if (timestepDuration.toMinutes() > 0) {
+            isRealTime = false;
+        }
     }
 
     public static void incrementSimulationTime() {
-        simulationTime = simulationTime.plus(timestepDuration);
+        if (!isRealTime) {
+            if (simulationTime == null) {
+                simulationTime = LocalDateTime.now();
+            }
+            simulationTime = simulationTime.plus(timestepDuration);
+        }
     }
 
 }

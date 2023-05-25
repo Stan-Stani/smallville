@@ -20,7 +20,8 @@ public class AccessTime {
     }
     
     public void update() {
-	this.lastAccessed = Timekeeper.getSimulationTime();
+	    Timekeeper.incrementSimulationTime();
+        this.lastAccessed = Timekeeper.getSimulationTime();
     }
     
     public LocalDateTime getLastAccessed() {

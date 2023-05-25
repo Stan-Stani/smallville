@@ -36,7 +36,7 @@ public class Smallville {
 
 	startServer(port);
 
-	Updater.checkLatestVersion();
+//	Updater.checkLatestVersion();
 	LOG.info("Smallville server started on port " + port);
     }
 
